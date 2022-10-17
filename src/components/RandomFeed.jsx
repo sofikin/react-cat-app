@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Grid} from "@mui/material";
+import Image from "./Image";
 
 const Feed = () => {
 
@@ -16,6 +17,10 @@ const Feed = () => {
             console.log(e);
         }
     }
+
+    useEffect(() => {
+        refreshImages();
+    }, [])
 
     return (
             <Grid container columns={{xs:4, sm:8, md:12}}>
