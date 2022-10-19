@@ -10,7 +10,9 @@ const Feed = () => {
         setImages([])
 
         try {
-            const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=12', {headers: {'x-api-key': process.env.REACT_APP_CAT_API_KEY}});
+            const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=12&has_breeds=1', {headers: {
+                "content-type":"application/json",
+                'x-api-key': process.env.REACT_APP_CAT_API_KEY}});
             const json = await response.json();
             setImages(json);
         } catch (e) {
@@ -26,7 +28,9 @@ const Feed = () => {
             <Grid container columns={{xs:4, sm:8, md:12}}>
                 {
                     images && images.map(image => (
+                        <Grid item key={image.id} xs={2} sm={4} md={4}>
                             <Image data={image} key={image.id}/>
+                        </Grid>
                     ))
                 }
             </Grid>

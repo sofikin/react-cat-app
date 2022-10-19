@@ -7,31 +7,32 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import {Checkbox} from "@mui/material";
+import {FavoriteBorder} from "@mui/icons-material";
 
-export default function Image() {
+export default function Image({data}) {
+
+    const breed = data.breeds[0] || {};
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ margin: 2, maxWidth: 345 }}>
             <CardHeader
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
+                title={breed.name}
             />
             <CardMedia
                 component="img"
-                height="194"
-                image="/static/images/cards/paella.jpg"
-                alt="Paella dish"
+                height="300"
+                image={data.url}
+                alt={breed.name}
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                    This impressive paella is a perfect party dish and a fun meal to cook
-                    together with your guests. Add 1 cup of frozen peas along with the mussels,
-                    if you like.
+                    {breed.temperament}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
+                    <Checkbox icon={<FavoriteBorder/>} checkedIcon={<FavoriteIcon/>}/>
                 </IconButton>
             </CardActions>
         </Card>
