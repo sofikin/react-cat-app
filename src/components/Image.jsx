@@ -13,6 +13,10 @@ import {FavoriteBorder} from "@mui/icons-material";
 export default function Image({data}) {
 
     const breed = data.breeds[0] || {};
+    const [favorite, setFavorite] = React.useState(data.favorite)
+    const handleFavoriteToggle = () => {
+        setFavorite(!favorite)
+    }
 
     return (
         <Card sx={{ margin: 2, maxWidth: 345 }}>
@@ -32,7 +36,7 @@ export default function Image({data}) {
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
-                    <Checkbox icon={<FavoriteBorder/>} checkedIcon={<FavoriteIcon/>}/>
+                    <Checkbox icon={<FavoriteBorder/>} checkedIcon={<FavoriteIcon/>} checked={!!favorite}/>
                 </IconButton>
             </CardActions>
         </Card>
