@@ -20,6 +20,7 @@ const FavoritesFeed = () => {
                     id: favorite.image.id,
                     url: favorite.image.url,
                     favorite,
+                    breeds: []
                 }
             })
 
