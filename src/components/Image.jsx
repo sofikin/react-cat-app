@@ -23,14 +23,15 @@ export default function Image({data}) {
                 "image_id": data.id
             });
 
-            const newFavorite = await fetch("https://api.thecatapi.com/v1/favourites", {
+            const response = await fetch("https://api.thecatapi.com/v1/favourites", {
                 method: "POST",
                 headers: {"content-type": "application/json", 'x-api-key': process.env.REACT_APP_CAT_API_KEY},
                 body: rawBody
             })
+            const newFavorite = await response.json();
             setFavorite(newFavorite);
         } else {
-            await fetch("https://api.thecatapi.com/v1/favourites/${favourite.id}", {
+            await fetch(`https://api.thecatapi.com/v1/favourites/${favorite.id}`, {
                 method: "DELETE",
                 headers: {"content-type": "application/json", 'x-api-key': process.env.REACT_APP_CAT_API_KEY},
                 body: rawBody
