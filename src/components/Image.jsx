@@ -10,9 +10,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import {Checkbox} from "@mui/material";
 import {FavoriteBorder} from "@mui/icons-material";
 
-export default function Image({data}) {
+export default function Image({data, onUnFavourite}) {
 
-    const breed = data.breeds[0] || {};
+    const breed = data.breeds[0] || {}
     const [favorite, setFavorite] = React.useState(data.favorite)
 
     async function handleFavoriteToggle() {
@@ -31,11 +31,12 @@ export default function Image({data}) {
             const newFavorite = await response.json();
             setFavorite(newFavorite);
         } else {
-            await fetch(`https://api.thecatapi.com/v1/favourites/${favorite.id}`, {
+            fetch(`https://api.thecatapi.com/v1/favourites/${favorite.id}`, {
                 method: "DELETE",
                 headers: {"content-type": "application/json", 'x-api-key': process.env.REACT_APP_CAT_API_KEY},
                 body: rawBody
             })
+            onUnFavourite(favorite.id)
             setFavorite(null);
         }
     }
