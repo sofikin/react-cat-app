@@ -1,16 +1,12 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {FormControlLabel, FormGroup, Switch} from "@mui/material";
 
 export default function NavBar({onModeChange}) {
 
-    const [mode, setMode] = React.useState(false);
-
     const handleModeChange = (event) => {
-        setMode(event.target.checked);
         onModeChange(event.target.checked);
     }
 

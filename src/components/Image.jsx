@@ -57,7 +57,7 @@ export default function Image({data, onUnFavourite}) {
             </Typography>
         </CardContent>
         <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
+            <IconButton className="heart" aria-label="add to favorites">
                 <Checkbox onChange={handleFavoriteToggle} icon={<FavoriteBorder/>} checkedIcon={<FavoriteIcon/>}
                           checked={!!favorite}/>
             </IconButton>
